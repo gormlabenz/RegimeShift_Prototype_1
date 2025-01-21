@@ -19,7 +19,13 @@ public class EcosystemController : MonoBehaviour
 
             resource.SetTypeState(transformerOutputType);
             resource.OnTargetReached += HandleResourceReachedTransformerTarget;
-            FindNextTransformerTarget(resource);
+
+            Transformer nextTransformer = GetNextTransformerTarget(resource);
+
+            if (nextTransformer != null)
+            {
+                resource.SetTargetTransformer(nextTransformer);
+            }
 
             transformer.OnResourceTransformed += HandleOnResourceTransformed;
             transformer.OnStartTransforming += HandleOnStartTransforming;
@@ -38,7 +44,13 @@ public class EcosystemController : MonoBehaviour
         ProductionTypes.ResourceType nextType = ProductionTypes.GetTransformerOutputType(transformer.Type);
 
         resource.SetTypeState(nextType);
-        FindNextTransformerTarget(resource);
+
+        Transformer nextTransformer = GetNextTransformerTarget(resource);
+
+        if (nextTransformer != null)
+        {
+            resource.SetTargetTransformer(nextTransformer);
+        }
     }
 
     private void HandleOnStartTransforming(Transformer transformer, Resource resource)
@@ -47,23 +59,24 @@ public class EcosystemController : MonoBehaviour
     }
 
 
-    private void FindNextTransformerTarget(Resource resource)
+    private Transformer GetNextTransformerTarget(Resource resource)
     {
         ProductionTypes.ResourceType nextType = ProductionTypes.GetNextResourceType(resource.CurrentType);
 
-        var bestTransformer =
+        var nextTransformer =
             (from transformer in transformers
              where ProductionTypes.GetTransformerInputType(transformer.Type) == nextType
              orderby transformer.TimeUntilAvailable
              select transformer).FirstOrDefault();
 
-        if (bestTransformer != null)
+        if (nextTransformer != null)
         {
-            resource.SetTargetTransformer(bestTransformer);
+            return nextTransformer;
         }
         else
         {
             Debug.LogWarning($"No transformer found for resource {resource.name} with type {nextType}");
+            return null;
         }
     }
 }
