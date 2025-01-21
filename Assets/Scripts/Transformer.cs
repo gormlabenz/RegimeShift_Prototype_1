@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Transformer : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class Transformer : MonoBehaviour
     [SerializeField] private float arrivalThreshold = 0.1f;
 
     private Queue<Resource> transformingResourceQueue = new Queue<Resource>();
-    private Queue<Resource> movingResourceQueue = new Queue<Resource>();
+    private List<Resource> movingResources = new List<Resource>();
     private Resource currentResource;
     private float currentTransformTime;
     private TransformerState currentState = TransformerState.Available;
@@ -29,10 +30,21 @@ public class Transformer : MonoBehaviour
     public float ArrivalThreshold => arrivalThreshold;
     public TransformerState CurrentState => currentState;
 
-    public float TimeUntilAvailable =>
-        currentState == TransformerState.Transforming
-            ? (transformTime - currentTransformTime) + (transformingResourceQueue.Count * transformTime)
-            : transformingResourceQueue.Count * transformTime;
+    public float TimeUntilAvailable
+    {
+        get
+        {
+            float queueTime = transformingResourceQueue.Count * transformTime;
+            float movingResourcesTime = movingResources.Count * transformTime;
+
+            if (currentState == TransformerState.Transforming)
+            {
+                return (transformTime - currentTransformTime) + queueTime + movingResourcesTime;
+            }
+
+            return queueTime + movingResourcesTime;
+        }
+    }
 
     private void Update()
     {
@@ -46,6 +58,21 @@ public class Transformer : MonoBehaviour
         {
             StartTransformingNextResource();
         }
+    }
+
+    public void AddResourceToMovingList(Resource resource)
+    {
+        movingResources.Add(resource);
+    }
+
+    public bool RemoveResourceFromMovingList(Resource resource)
+    {
+        return movingResources.Remove(resource);
+    }
+
+    public bool IsResourceInMovingList(Resource resource)
+    {
+        return movingResources.Contains(resource);
     }
 
     public void AddResourceToTransformingQueue(Resource resource)
