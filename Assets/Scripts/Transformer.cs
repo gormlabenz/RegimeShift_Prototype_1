@@ -40,8 +40,6 @@ public class Transformer : MonoBehaviour
     private void Start()
     {
         noteComponent = GetComponent<ObjectNote>();
-        Debug.Log($"noteComponent {noteComponent.name} is available");
-
     }
 
 
@@ -133,7 +131,6 @@ public class Transformer : MonoBehaviour
     {
         transformingResourceQueue.Enqueue(resource);
         SetResourcePositionsInQueue();
-        Debug.Log($"Resource {resource.name} added to transformer {name} queue | Queue: {transformingResourceQueue.Count}");
         SetLabel();
 
         if (currentState == TransformerState.Available)
