@@ -16,7 +16,7 @@ public static class ProductionTypes
         CA
     }
 
-    public static ResourceType GetInputType(TransformerType transformer)
+    public static ResourceType GetTransformerInputType(TransformerType transformer)
     {
         return transformer switch
         {
@@ -27,7 +27,7 @@ public static class ProductionTypes
         };
     }
 
-    public static ResourceType GetOutputType(TransformerType transformer)
+    public static ResourceType GetTransformerOutputType(TransformerType transformer)
     {
         return transformer switch
         {
@@ -38,7 +38,7 @@ public static class ProductionTypes
         };
     }
 
-    public static ResourceType GetNextType(ResourceType current)
+    public static ResourceType GetNextResourceType(ResourceType current)
     {
         return current switch
         {
@@ -49,7 +49,7 @@ public static class ProductionTypes
         };
     }
 
-    public static ResourceType GetPreviousType(ResourceType current)
+    public static ResourceType GetPreviousResourceType(ResourceType current)
     {
         return current switch
         {

@@ -10,7 +10,7 @@ public class TargetInfo
 
 public class Resource : MonoBehaviour
 {
-    public event Action<Resource> OnTargetReached;
+    public event Action<Resource, Transformer> OnTargetReached;
 
     public enum ResourceState
     {
@@ -80,7 +80,7 @@ public class Resource : MonoBehaviour
         {
             DisablePhysics();
             SetState(ResourceState.Waiting);
-            OnTargetReached?.Invoke(this);
+            OnTargetReached?.Invoke(this, currentTargetTransformer);
         }
     }
 
