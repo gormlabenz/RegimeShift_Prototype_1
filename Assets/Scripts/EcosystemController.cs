@@ -6,7 +6,7 @@ public class EcosystemController : MonoBehaviour
 {
 
 
-    public Transformer[] transformers;
+
     List<Transformer> enabledTransformer = new List<Transformer>();
 
     public Resource resourcePrefab;
@@ -14,6 +14,8 @@ public class EcosystemController : MonoBehaviour
 
     void Start()
     {
+        var transformers = GetComponentsInChildren<Transformer>();
+
         foreach (var transformer in transformers)
         {
             if (!transformer.gameObject.activeSelf) continue;
