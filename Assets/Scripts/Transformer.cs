@@ -209,14 +209,12 @@ public class Transformer : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, arrivalThreshold);
     }
 
     public void SetDisabled(bool disabled)
     {
-
         currentState = disabled ? TransformerState.Disabled : TransformerState.Available;
     }
 }
