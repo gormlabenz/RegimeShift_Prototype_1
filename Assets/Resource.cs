@@ -1,7 +1,18 @@
 using UnityEngine;
+using System;
+
+public class TargetInfo
+{
+    public Vector3 Position { get; set; }
+    public float Distance { get; set; }
+    public bool IsReached { get; set; }
+}
 
 public class Resource : MonoBehaviour
 {
+    public event Action<Resource> OnTargetReached;
+
+    private TargetInfo currentTarget;
     public enum Type
     {
         A,
@@ -75,19 +86,10 @@ public class Resource : MonoBehaviour
         float distance = Vector3.Distance(transform.position, targetTransform.position);
         if (distance < currentTargetTransformer.ArrivalThreshold && IsInState(State.Moving))
         {
-            OnTargetReached();
+            DisablePhysics();
+            SetState(State.Waiting);
+            OnTargetReached?.Invoke(this);
         }
-    }
-
-    private void OnTargetReached()
-    {
-
-        DisablePhysics();
-        IsInState(State.Waiting);
-
-        // Inform EcosystemController that we've arrived
-        /* EcosystemController.Instance.OnResourceArrivedAtTransformer(currentTargetTransformer, this); */
-
     }
 
 
@@ -112,6 +114,7 @@ public class Resource : MonoBehaviour
 
         targetTransform = target;
         currentTargetTransformer = transformer;
+        SetState(State.Moving);
     }
 
     public void SetState(State newState)
