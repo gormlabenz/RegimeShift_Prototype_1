@@ -29,6 +29,11 @@ public class Transformer : MonoBehaviour
     public TransformerState CurrentState => currentState;
     public int QueueCount => resourceQueue.Count;
 
+    public float TimeUntilAvailable =>
+        currentState == TransformerState.Processing
+            ? (processTime - currentProcessTime) + (resourceQueue.Count * processTime)
+            : resourceQueue.Count * processTime;
+
     private void Update()
     {
         if (currentState == TransformerState.Disabled) return;
@@ -91,14 +96,19 @@ public class Transformer : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, arrivalThreshold);
+    }
+
     public void SetDisabled(bool disabled)
     {
         currentState = disabled ? TransformerState.Disabled : TransformerState.Available;
     }
 
-    private void OnDrawGizmos()
+    public int GetQueueCount()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, arrivalThreshold);
+        return resourceQueue.Count;
     }
 }

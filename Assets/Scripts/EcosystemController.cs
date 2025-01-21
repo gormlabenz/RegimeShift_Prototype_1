@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 
 public class EcosystemController : MonoBehaviour
 {
@@ -48,19 +49,21 @@ public class EcosystemController : MonoBehaviour
 
     private void FindNextTransformerTarget(Resource resource)
     {
-        ProductionTypes.ResourceType currentType = resource.CurrentType;
+        ProductionTypes.ResourceType nextType = ProductionTypes.GetNextResourceType(resource.CurrentType);
 
-        ProductionTypes.ResourceType nextType = ProductionTypes.GetNextResourceType(currentType);
+        var bestTransformer =
+            (from transformer in transformers
+             where ProductionTypes.GetTransformerInputType(transformer.Type) == nextType
+             orderby transformer.TimeUntilAvailable
+             select transformer).FirstOrDefault();
 
-        foreach (var transformer in transformers)
+        if (bestTransformer != null)
         {
-            if (ProductionTypes.GetTransformerInputType(transformer.Type) == nextType)
-            {
-                resource.SetTargetTransformer(transformer);
-                return;
-            }
+            resource.SetTargetTransformer(bestTransformer);
         }
-
-        Debug.LogWarning($"No transformer found for resource {resource.name} with type {nextType}");
+        else
+        {
+            Debug.LogWarning($"No transformer found for resource {resource.name} with type {nextType}");
+        }
     }
 }
