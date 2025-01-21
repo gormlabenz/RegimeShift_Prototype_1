@@ -33,8 +33,8 @@ public class Resource : MonoBehaviour
 
     private MeshRenderer meshRenderer;
     private Rigidbody rb;
-    private Transform targetTransform;
     private Transformer currentTargetTransformer;
+    private Transform currentTargetTransformerTransform;
 
     [SerializeField] private float moveSpeed = 5f;
 
@@ -46,7 +46,7 @@ public class Resource : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (IsInState(ResourceState.Moving) && targetTransform != null)
+        if (IsInState(ResourceState.Moving) && currentTargetTransformerTransform != null)
         {
             MoveToTarget();
         }
@@ -71,7 +71,7 @@ public class Resource : MonoBehaviour
     private void MoveToTarget()
     {
         float step = moveSpeed * Time.fixedDeltaTime;
-        Vector3 newPosition = Vector3.MoveTowards(transform.position, targetTransform.position, step);
+        Vector3 newPosition = Vector3.MoveTowards(transform.position, currentTargetTransformerTransform.position, step);
 
         // Use MovePosition for kinematic rigidbody movement
         if (rb.isKinematic)
@@ -83,7 +83,7 @@ public class Resource : MonoBehaviour
             transform.position = newPosition;
         }
 
-        float distance = Vector3.Distance(transform.position, targetTransform.position);
+        float distance = Vector3.Distance(transform.position, currentTargetTransformerTransform.position);
         if (distance < currentTargetTransformer.ArrivalThreshold && IsInState(ResourceState.Moving))
         {
             DisablePhysics();
@@ -105,15 +105,15 @@ public class Resource : MonoBehaviour
     }
 
 
-    public void SetTarget(Transform target, Transformer transformer)
+    public void SetTargetTransformer(Transformer transformer)
     {
         if (IsInState(ResourceState.Moving))
         {
             Debug.LogWarning($"Resource {name} already has a target and is moving! " + $"(Current Transformer: {currentTargetTransformer?.name}, " + $"New Transformer: {transformer.name})");
         }
 
-        targetTransform = target;
         currentTargetTransformer = transformer;
+        currentTargetTransformerTransform = transformer.transform;
         SetState(ResourceState.Moving);
     }
 
