@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EcosystemController : MonoBehaviour
 {
-    // list input of transform objects
+
     public Resource[] resources;
     public Transformer[] transformers;
     void Start()
@@ -18,12 +18,11 @@ public class EcosystemController : MonoBehaviour
     private void HandleResourceReachedTarget(Resource resource)
     {
         Debug.Log($"Resource reached its target!");
-        AssignNewTarget(resource); // Optional: Neues Ziel zuweisen
+        AssignNewTarget(resource);
     }
 
     private void AssignNewTarget(Resource resource)
     {
-        // Find transformer with the least amount of resources
         Transformer transformerWithLeastResources = transformers[1];
 
         resource.SetTarget(transformerWithLeastResources.transform, transformerWithLeastResources);

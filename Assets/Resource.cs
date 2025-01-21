@@ -12,24 +12,24 @@ public class Resource : MonoBehaviour
 {
     public event Action<Resource> OnTargetReached;
 
-    private TargetInfo currentTarget;
-    public enum Type
+    public enum ResourceType
     {
-        A,
-        B,
-        C
+        TypeA,
+        TypeB,
+        TypeC
+
     }
 
-    public enum State
+    public enum ResourceState
     {
         Moving,
         Waiting,
         Transforming,
-        OnHold
+        Unassigned
     }
 
-    public Type CurrentType { get; private set; }
-    public State CurrentState { get; private set; } = State.Waiting;
+    public ResourceType CurrentType { get; private set; }
+    public ResourceState CurrentState { get; private set; } = ResourceState.Waiting;
 
     private MeshRenderer meshRenderer;
     private Rigidbody rb;
@@ -46,7 +46,7 @@ public class Resource : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (IsInState(State.Moving) && targetTransform != null)
+        if (IsInState(ResourceState.Moving) && targetTransform != null)
         {
             MoveToTarget();
         }
@@ -56,13 +56,13 @@ public class Resource : MonoBehaviour
     {
         switch (CurrentType)
         {
-            case Type.A:
+            case ResourceType.TypeA:
                 meshRenderer.material.color = Color.blue;
                 break;
-            case Type.B:
+            case ResourceType.TypeB:
                 meshRenderer.material.color = Color.green;
                 break;
-            case Type.C:
+            case ResourceType.TypeC:
                 meshRenderer.material.color = Color.red;
                 break;
         }
@@ -84,10 +84,10 @@ public class Resource : MonoBehaviour
         }
 
         float distance = Vector3.Distance(transform.position, targetTransform.position);
-        if (distance < currentTargetTransformer.ArrivalThreshold && IsInState(State.Moving))
+        if (distance < currentTargetTransformer.ArrivalThreshold && IsInState(ResourceState.Moving))
         {
             DisablePhysics();
-            SetState(State.Waiting);
+            SetState(ResourceState.Waiting);
             OnTargetReached?.Invoke(this);
         }
     }
@@ -107,32 +107,32 @@ public class Resource : MonoBehaviour
 
     public void SetTarget(Transform target, Transformer transformer)
     {
-        if (IsInState(State.Moving))
+        if (IsInState(ResourceState.Moving))
         {
             Debug.LogWarning($"Resource {name} already has a target and is moving! " + $"(Current Transformer: {currentTargetTransformer?.name}, " + $"New Transformer: {transformer.name})");
         }
 
         targetTransform = target;
         currentTargetTransformer = transformer;
-        SetState(State.Moving);
+        SetState(ResourceState.Moving);
     }
 
-    public void SetState(State newState)
+    public void SetState(ResourceState newState)
     {
         CurrentState = newState;
 
         switch (CurrentState)
         {
-            case State.Transforming:
+            case ResourceState.Transforming:
                 DisablePhysics();
                 break;
-            case State.Moving:
+            case ResourceState.Moving:
                 EnablePhysics();
                 break;
-            case State.Waiting:
+            case ResourceState.Waiting:
                 DisablePhysics();
                 break;
-            case State.OnHold:
+            case ResourceState.Unassigned:
                 DisablePhysics();
                 break;
         }
@@ -141,7 +141,7 @@ public class Resource : MonoBehaviour
     }
 
 
-    public void SetTypeState(Type newState)
+    public void SetTypeState(ResourceType newState)
     {
         CurrentType = newState;
         UpdateVisuals();
@@ -149,7 +149,7 @@ public class Resource : MonoBehaviour
 
 
 
-    public bool IsInState(State state)
+    public bool IsInState(ResourceState state)
     {
         return CurrentState == state;
     }
