@@ -19,6 +19,7 @@ public class Transformer : MonoBehaviour
     [SerializeField] private float arrivalThreshold = 0.1f;
 
     private Queue<Resource> transformingResourceQueue = new Queue<Resource>();
+    private Queue<Resource> movingResourceQueue = new Queue<Resource>();
     private Resource currentResource;
     private float currentTransformTime;
     private TransformerState currentState = TransformerState.Available;
@@ -27,7 +28,6 @@ public class Transformer : MonoBehaviour
     public float TransformTime => transformTime;
     public float ArrivalThreshold => arrivalThreshold;
     public TransformerState CurrentState => currentState;
-    public int QueueCount => transformingResourceQueue.Count;
 
     public float TimeUntilAvailable =>
         currentState == TransformerState.Transforming
@@ -48,7 +48,7 @@ public class Transformer : MonoBehaviour
         }
     }
 
-    public void AddResourceToQueue(Resource resource)
+    public void AddResourceToTransformingQueue(Resource resource)
     {
         transformingResourceQueue.Enqueue(resource);
 
