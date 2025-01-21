@@ -3,16 +3,19 @@ using UnityEngine;
 public class EcosystemController : MonoBehaviour
 {
 
-    public Resource[] resources;
+
     public Transformer[] transformers;
+    // resource prefab
+    public Resource resourcePrefab;
     void Start()
     {
-        foreach (var resource in resources)
+        foreach (var transformer in transformers)
         {
-            resource.SetTarget(transformers[0].transform, transformers[0]);
-            resource.OnTargetReached += HandleResourceReachedTarget;
+            // create new resource object at Transformer transform
+            Resource resource = Instantiate(resourcePrefab, transformer.transform.position, Quaternion.identity);
 
         }
+
     }
 
     private void HandleResourceReachedTarget(Resource resource)
