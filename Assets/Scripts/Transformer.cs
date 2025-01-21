@@ -62,14 +62,13 @@ public class Transformer : MonoBehaviour
 
     private void SetLabel()
     {
-        float queueTime = transformingResourceQueue.Count * transformTime;
-        float movingResourcesTime = movingResources.Count * transformTime;
-
         if (noteComponent != null)
         {
-            noteComponent.NoteText = $"Queue: {transformingResourceQueue.Count} | Moving: {movingResources.Count} | Time: {queueTime + movingResourcesTime}";
+            noteComponent.NoteText = $"Queue: {transformingResourceQueue.Count}\n" +
+                                   $"Moving: {movingResources.Count}\n" +
+                                   $"CurrentResource: {(currentResource != null ? "1" : "0")}\n" +
+                                   $"Time: {TimeUntilAvailable}";
         }
-
     }
 
     private void Update()
@@ -112,14 +111,14 @@ public class Transformer : MonoBehaviour
 
     public void AddResourceToMovingList(Resource resource)
     {
-
         movingResources.Add(resource);
+        SetLabel();
     }
 
-    public bool RemoveResourceFromMovingList(Resource resource)
+    public void RemoveResourceFromMovingList(Resource resource)
     {
-
-        return movingResources.Remove(resource);
+        movingResources.Remove(resource);
+        SetLabel();
     }
 
     public bool IsResourceInMovingList(Resource resource)
@@ -131,6 +130,7 @@ public class Transformer : MonoBehaviour
     public void AddResourceToTransformingQueue(Resource resource)
     {
         transformingResourceQueue.Enqueue(resource);
+        Debug.Log($"Resource {resource.name} added to transformer {name} queue | Queue: {transformingResourceQueue.Count}");
         SetLabel();
         if (currentState == TransformerState.Available)
         {
@@ -149,6 +149,7 @@ public class Transformer : MonoBehaviour
         currentState = TransformerState.Transforming;
 
         OnStartTransforming?.Invoke(this, currentResource);
+        SetLabel();
     }
 
     private void TransformCurrentResource()
@@ -178,6 +179,7 @@ public class Transformer : MonoBehaviour
         {
             currentState = TransformerState.Available;
         }
+        SetLabel();
     }
 
     private void OnDrawGizmos()
