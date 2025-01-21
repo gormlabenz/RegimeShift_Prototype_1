@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class Transformer : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Transformer : MonoBehaviour
 
     public event Action<Transformer, Resource> OnResourceTransformed;
     public event Action<Transformer, Resource> OnStartTransforming;
+    public event Action<Transformer, Resource[]> OnTransformerDisabled;
+
 
     [SerializeField] private ProductionTypes.TransformerType type;
     [SerializeField] private float transformTime = 10f;
@@ -58,6 +61,19 @@ public class Transformer : MonoBehaviour
         {
             StartTransformingNextResource();
         }
+    }
+
+
+    private void OnDisable()
+    {
+        List<Resource> allResources = new List<Resource>(transformingResourceQueue);
+        allResources.AddRange(movingResources);
+        allResources.Add(currentResource);
+
+        OnTransformerDisabled?.Invoke(this, allResources.ToArray());
+
+        transformingResourceQueue.Clear();
+        movingResources.Clear();
     }
 
     public void AddResourceToMovingList(Resource resource)

@@ -42,6 +42,7 @@ public class EcosystemController : MonoBehaviour
 
             transformer.OnResourceTransformed += HandleOnResourceTransformed;
             transformer.OnStartTransforming += HandleOnStartTransforming;
+            transformer.OnTransformerDisabled += HandleOnTransformerDisabled;
         }
     }
 
@@ -50,6 +51,11 @@ public class EcosystemController : MonoBehaviour
         Debug.Log($"Resource reached its target!");
         transformer.RemoveResourceFromMovingList(resource);
         transformer.AddResourceToTransformingQueue(resource);
+    }
+
+    private void HandleOnStartTransforming(Transformer transformer, Resource resource)
+    {
+        resource.SetState(Resource.ResourceState.Transforming);
     }
 
     private void HandleOnResourceTransformed(Transformer transformer, Resource resource)
@@ -67,9 +73,25 @@ public class EcosystemController : MonoBehaviour
         }
     }
 
-    private void HandleOnStartTransforming(Transformer transformer, Resource resource)
+    private void HandleOnTransformerDisabled(Transformer transformer, Resource[] resources)
     {
-        resource.SetState(Resource.ResourceState.Transforming);
+        enabledTransformer.Remove(transformer);
+
+        foreach (var resource in resources)
+        {
+            resource.SetState(Resource.ResourceState.Unassigned);
+            Transformer nextTransformer = GetNextTransformerTarget(resource);
+            if (nextTransformer != null)
+            {
+                resource.SetTargetTransformer(nextTransformer);
+                nextTransformer.AddResourceToMovingList(resource);
+            }
+        }
+
+        // remove listeners
+        transformer.OnResourceTransformed -= HandleOnResourceTransformed;
+        transformer.OnStartTransforming -= HandleOnStartTransforming;
+        transformer.OnTransformerDisabled -= HandleOnTransformerDisabled;
     }
 
 
