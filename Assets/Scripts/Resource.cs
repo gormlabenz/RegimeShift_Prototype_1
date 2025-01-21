@@ -1,13 +1,6 @@
 using UnityEngine;
 using System;
 
-public class TargetInfo
-{
-    public Vector3 Position { get; set; }
-    public float Distance { get; set; }
-    public bool IsReached { get; set; }
-}
-
 public class Resource : MonoBehaviour
 {
     public event Action<Resource, Transformer> OnTargetReached;

@@ -19,6 +19,9 @@ public class EcosystemController : MonoBehaviour
             resource.SetTypeState(transformerOutputType);
             resource.OnTargetReached += HandleResourceReachedTransformerTarget;
             FindNextTransformerTarget(resource);
+
+            transformer.OnResourceProcessed += HandleOnResourceProcessed;
+            transformer.OnStartProcessing += HandleOnStartProcessing;
         }
 
     }
@@ -26,11 +29,20 @@ public class EcosystemController : MonoBehaviour
     private void HandleResourceReachedTransformerTarget(Resource resource, Transformer transformer)
     {
         Debug.Log($"Resource reached its target!");
+        transformer.AddResourceToQueue(resource);
+    }
 
+    private void HandleOnResourceProcessed(Transformer transformer, Resource resource)
+    {
         ProductionTypes.ResourceType nextType = ProductionTypes.GetTransformerOutputType(transformer.Type);
 
         resource.SetTypeState(nextType);
         FindNextTransformerTarget(resource);
+    }
+
+    private void HandleOnStartProcessing(Transformer transformer, Resource resource)
+    {
+        resource.SetState(Resource.ResourceState.Transforming);
     }
 
 
