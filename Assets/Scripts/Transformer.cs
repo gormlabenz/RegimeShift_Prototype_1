@@ -32,12 +32,24 @@ public class Transformer : MonoBehaviour
     public float ArrivalThreshold => arrivalThreshold;
     public TransformerState CurrentState => currentState;
 
+
+    private ObjectNote noteComponent;
+
+    private void Start()
+    {
+        noteComponent = GetComponent<ObjectNote>();
+        Debug.Log($"noteComponent {noteComponent.name} is available");
+
+    }
+
+
     public float TimeUntilAvailable
     {
         get
         {
             float queueTime = transformingResourceQueue.Count * transformTime;
             float movingResourcesTime = movingResources.Count * transformTime;
+
 
             if (currentState == TransformerState.Transforming)
             {
@@ -46,6 +58,18 @@ public class Transformer : MonoBehaviour
 
             return queueTime + movingResourcesTime;
         }
+    }
+
+    private void SetLabel()
+    {
+        float queueTime = transformingResourceQueue.Count * transformTime;
+        float movingResourcesTime = movingResources.Count * transformTime;
+
+        if (noteComponent != null)
+        {
+            noteComponent.NoteText = $"Queue: {transformingResourceQueue.Count} | Moving: {movingResources.Count} | Time: {queueTime + movingResourcesTime}";
+        }
+
     }
 
     private void Update()
@@ -88,31 +112,36 @@ public class Transformer : MonoBehaviour
 
     public void AddResourceToMovingList(Resource resource)
     {
+
         movingResources.Add(resource);
     }
 
     public bool RemoveResourceFromMovingList(Resource resource)
     {
+
         return movingResources.Remove(resource);
     }
 
     public bool IsResourceInMovingList(Resource resource)
     {
+
         return movingResources.Contains(resource);
     }
 
     public void AddResourceToTransformingQueue(Resource resource)
     {
         transformingResourceQueue.Enqueue(resource);
-
+        SetLabel();
         if (currentState == TransformerState.Available)
         {
+
             StartTransformingNextResource();
         }
     }
 
     private void StartTransformingNextResource()
     {
+
         if (transformingResourceQueue.Count == 0) return;
 
         currentResource = transformingResourceQueue.Dequeue();
@@ -124,6 +153,7 @@ public class Transformer : MonoBehaviour
 
     private void TransformCurrentResource()
     {
+
         currentTransformTime += Time.deltaTime;
 
         if (currentTransformTime >= transformTime)
@@ -134,6 +164,7 @@ public class Transformer : MonoBehaviour
 
     private void FinishTransformingResource()
     {
+
         OnResourceTransformed?.Invoke(this, currentResource);
 
         currentResource = null;
@@ -151,12 +182,14 @@ public class Transformer : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, arrivalThreshold);
     }
 
     public void SetDisabled(bool disabled)
     {
+
         currentState = disabled ? TransformerState.Disabled : TransformerState.Available;
     }
 }

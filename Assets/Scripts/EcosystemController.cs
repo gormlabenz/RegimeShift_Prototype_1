@@ -83,7 +83,6 @@ public class EcosystemController : MonoBehaviour
 
     private void HandleResourceReachedTransformerTarget(Resource resource, Transformer transformer)
     {
-        Debug.Log($"Resource reached its target!");
         transformer.RemoveResourceFromMovingList(resource);
         transformer.AddResourceToTransformingQueue(resource);
         resource.SetState(Resource.ResourceState.Waiting);
