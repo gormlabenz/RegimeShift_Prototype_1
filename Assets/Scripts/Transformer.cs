@@ -7,8 +7,8 @@ public class Transformer : MonoBehaviour
     public enum TransformerState
     {
         Available,      // Ready to accept and transform resources
-        Transforming,     // Currently transforming a resource
-        Disabled       // Transformer is not operational
+        Transforming,   // Currently transforming a resource
+        Disabled        // Transformer is not operational
     }
 
     public event Action<Transformer, Resource> OnResourceTransformed;
@@ -18,7 +18,7 @@ public class Transformer : MonoBehaviour
     [SerializeField] private float transformTime = 10f;
     [SerializeField] private float arrivalThreshold = 0.1f;
 
-    private Queue<Resource> resourceQueue = new Queue<Resource>();
+    private Queue<Resource> transformingResourceQueue = new Queue<Resource>();
     private Resource currentResource;
     private float currentTransformTime;
     private TransformerState currentState = TransformerState.Available;
@@ -27,12 +27,12 @@ public class Transformer : MonoBehaviour
     public float TransformTime => transformTime;
     public float ArrivalThreshold => arrivalThreshold;
     public TransformerState CurrentState => currentState;
-    public int QueueCount => resourceQueue.Count;
+    public int QueueCount => transformingResourceQueue.Count;
 
     public float TimeUntilAvailable =>
         currentState == TransformerState.Transforming
-            ? (transformTime - currentTransformTime) + (resourceQueue.Count * transformTime)
-            : resourceQueue.Count * transformTime;
+            ? (transformTime - currentTransformTime) + (transformingResourceQueue.Count * transformTime)
+            : transformingResourceQueue.Count * transformTime;
 
     private void Update()
     {
@@ -42,7 +42,7 @@ public class Transformer : MonoBehaviour
         {
             TransformCurrentResource();
         }
-        else if (resourceQueue.Count > 0)
+        else if (transformingResourceQueue.Count > 0)
         {
             StartTransformingNextResource();
         }
@@ -50,7 +50,7 @@ public class Transformer : MonoBehaviour
 
     public void AddResourceToQueue(Resource resource)
     {
-        resourceQueue.Enqueue(resource);
+        transformingResourceQueue.Enqueue(resource);
 
         if (currentState == TransformerState.Available)
         {
@@ -60,9 +60,9 @@ public class Transformer : MonoBehaviour
 
     private void StartTransformingNextResource()
     {
-        if (resourceQueue.Count == 0) return;
+        if (transformingResourceQueue.Count == 0) return;
 
-        currentResource = resourceQueue.Dequeue();
+        currentResource = transformingResourceQueue.Dequeue();
         currentTransformTime = 0f;
         currentState = TransformerState.Transforming;
 
@@ -86,7 +86,7 @@ public class Transformer : MonoBehaviour
         currentResource = null;
         currentTransformTime = 0f;
 
-        if (resourceQueue.Count > 0)
+        if (transformingResourceQueue.Count > 0)
         {
             StartTransformingNextResource();
         }
@@ -105,10 +105,5 @@ public class Transformer : MonoBehaviour
     public void SetDisabled(bool disabled)
     {
         currentState = disabled ? TransformerState.Disabled : TransformerState.Available;
-    }
-
-    public int GetQueueCount()
-    {
-        return resourceQueue.Count;
     }
 }
