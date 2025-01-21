@@ -25,6 +25,7 @@ public class EcosystemController : MonoBehaviour
             if (nextTransformer != null)
             {
                 resource.SetTargetTransformer(nextTransformer);
+                transformer.AddResourceToMovingList(resource);
             }
 
             transformer.OnResourceTransformed += HandleOnResourceTransformed;
@@ -36,6 +37,7 @@ public class EcosystemController : MonoBehaviour
     private void HandleResourceReachedTransformerTarget(Resource resource, Transformer transformer)
     {
         Debug.Log($"Resource reached its target!");
+        transformer.RemoveResourceFromMovingList(resource);
         transformer.AddResourceToTransformingQueue(resource);
     }
 
@@ -50,6 +52,7 @@ public class EcosystemController : MonoBehaviour
         if (nextTransformer != null)
         {
             resource.SetTargetTransformer(nextTransformer);
+            nextTransformer.AddResourceToMovingList(resource);
         }
     }
 
