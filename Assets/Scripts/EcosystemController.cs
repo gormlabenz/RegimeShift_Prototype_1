@@ -4,13 +4,9 @@ using System.Collections.Generic;
 
 public class EcosystemController : MonoBehaviour
 {
-
-
-
     List<Transformer> enabledTransformer = new List<Transformer>();
-
     public Resource resourcePrefab;
-
+    public Transform resourceParent;
 
     void Start()
     {
@@ -30,7 +26,7 @@ public class EcosystemController : MonoBehaviour
 
         foreach (var transformer in enabledTransformer)
         {
-            Resource resource = Instantiate(resourcePrefab, transformer.transform.position, Quaternion.identity);
+            Resource resource = Instantiate(resourcePrefab, transformer.transform.position, Quaternion.identity, resourceParent);
 
             ProductionTypes.ResourceType transformerOutputType = ProductionTypes.GetTransformerOutputType(transformer.Type);
 
