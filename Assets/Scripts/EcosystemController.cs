@@ -1,17 +1,27 @@
 using UnityEngine;
 using System.Linq;
+using System.Collections.Generic;
 
 public class EcosystemController : MonoBehaviour
 {
 
 
     public Transformer[] transformers;
+    List<Transformer> enabledTransformer = new List<Transformer>();
+
     public Resource resourcePrefab;
 
 
     void Start()
     {
         foreach (var transformer in transformers)
+        {
+            if (!transformer.gameObject.activeSelf) continue;
+            enabledTransformer.Add(transformer);
+            Debug.Log($"Transformer {transformer.name} is available");
+        }
+
+        foreach (var transformer in enabledTransformer)
         {
             Resource resource = Instantiate(resourcePrefab, transformer.transform.position, Quaternion.identity);
 
@@ -31,7 +41,6 @@ public class EcosystemController : MonoBehaviour
             transformer.OnResourceTransformed += HandleOnResourceTransformed;
             transformer.OnStartTransforming += HandleOnStartTransforming;
         }
-
     }
 
     private void HandleResourceReachedTransformerTarget(Resource resource, Transformer transformer)
@@ -67,7 +76,7 @@ public class EcosystemController : MonoBehaviour
         ProductionTypes.ResourceType nextType = ProductionTypes.GetNextResourceType(resource.CurrentType);
 
         var nextTransformer =
-            (from transformer in transformers
+            (from transformer in enabledTransformer
              where ProductionTypes.GetTransformerInputType(transformer.Type) == nextType
              orderby transformer.TimeUntilAvailable
              select transformer).FirstOrDefault();
