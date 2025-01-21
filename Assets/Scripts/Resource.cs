@@ -12,14 +12,6 @@ public class Resource : MonoBehaviour
 {
     public event Action<Resource> OnTargetReached;
 
-    public enum ResourceType
-    {
-        TypeA,
-        TypeB,
-        TypeC
-
-    }
-
     public enum ResourceState
     {
         Moving,
@@ -28,7 +20,7 @@ public class Resource : MonoBehaviour
         Unassigned
     }
 
-    public ResourceType CurrentType { get; private set; }
+    public ProductionTypes.ResourceType CurrentType { get; private set; }
     public ResourceState CurrentState { get; private set; } = ResourceState.Waiting;
 
     private MeshRenderer meshRenderer;
@@ -56,13 +48,13 @@ public class Resource : MonoBehaviour
     {
         switch (CurrentType)
         {
-            case ResourceType.TypeA:
+            case ProductionTypes.ResourceType.A:
                 meshRenderer.material.color = Color.blue;
                 break;
-            case ResourceType.TypeB:
+            case ProductionTypes.ResourceType.B:
                 meshRenderer.material.color = Color.green;
                 break;
-            case ResourceType.TypeC:
+            case ProductionTypes.ResourceType.C:
                 meshRenderer.material.color = Color.red;
                 break;
         }
@@ -141,7 +133,7 @@ public class Resource : MonoBehaviour
     }
 
 
-    public void SetTypeState(ResourceType newState)
+    public void SetTypeState(ProductionTypes.ResourceType newState)
     {
         CurrentType = newState;
         UpdateVisuals();

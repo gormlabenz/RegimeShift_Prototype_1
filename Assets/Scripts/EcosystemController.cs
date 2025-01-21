@@ -12,8 +12,9 @@ public class EcosystemController : MonoBehaviour
     {
         foreach (var transformer in transformers)
         {
-            // create new resource object at Transformer transform
             Resource resource = Instantiate(resourcePrefab, transformer.transform.position, Quaternion.identity);
+            ProductionTypes.ResourceType transformerOutputType = ProductionTypes.GetOutputType(transformer.Type);
+            resource.SetTypeState(transformerOutputType);
         }
 
     }
