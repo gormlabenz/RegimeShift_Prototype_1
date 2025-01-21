@@ -35,10 +35,10 @@ public class EcosystemController : MonoBehaviour
             ProductionTypes.ResourceType transformerOutputType = ProductionTypes.GetTransformerOutputType(transformer.Type);
 
             resource.SetTypeState(transformerOutputType);
-            resource.OnTargetReached += HandleResourceReachedTransformerTarget;
+
+            SubscribeToResourceEvents(resource);
 
             Transformer nextTransformer = GetNextTransformerTarget(resource);
-
             if (nextTransformer != null)
             {
                 resource.SetTargetTransformer(nextTransformer);
@@ -68,6 +68,16 @@ public class EcosystemController : MonoBehaviour
         transformer.OnStartTransforming -= HandleOnStartTransforming;
         transformer.OnTransformerDisabled -= HandleOnTransformerDisabled;
         transformer.OnTransformerEnabled -= HandleOnTransformerEnabled;
+    }
+
+    private void SubscribeToResourceEvents(Resource resource)
+    {
+        resource.OnTargetReached += HandleResourceReachedTransformerTarget;
+    }
+
+    private void UnsubscribeFromResourceEvents(Resource resource)
+    {
+        resource.OnTargetReached -= HandleResourceReachedTransformerTarget;
     }
 
 
