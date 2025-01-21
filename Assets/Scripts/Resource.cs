@@ -81,7 +81,6 @@ public class Resource : MonoBehaviour
     private void DisablePhysics()
     {
         rb.isKinematic = true;
-
     }
 
     private void EnablePhysics()

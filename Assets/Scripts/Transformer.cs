@@ -20,6 +20,8 @@ public class Transformer : MonoBehaviour
     [SerializeField] private ProductionTypes.TransformerType type;
     [SerializeField] private float transformTime = 10f;
     [SerializeField] private float arrivalThreshold = 0.1f;
+    [SerializeField] private float resourceStackSpacing = 0.5f;
+    [SerializeField] private Vector3 resourceStackOffset = Vector3.up;
 
     private Queue<Resource> transformingResourceQueue = new Queue<Resource>();
     private List<Resource> movingResources = new List<Resource>();
@@ -130,23 +132,25 @@ public class Transformer : MonoBehaviour
     public void AddResourceToTransformingQueue(Resource resource)
     {
         transformingResourceQueue.Enqueue(resource);
+        SetResourcePositionsInQueue();
         Debug.Log($"Resource {resource.name} added to transformer {name} queue | Queue: {transformingResourceQueue.Count}");
         SetLabel();
+
         if (currentState == TransformerState.Available)
         {
-
             StartTransformingNextResource();
         }
     }
 
     private void StartTransformingNextResource()
     {
-
         if (transformingResourceQueue.Count == 0) return;
 
         currentResource = transformingResourceQueue.Dequeue();
         currentTransformTime = 0f;
         currentState = TransformerState.Transforming;
+
+        SetResourcePositionsInQueue();
 
         OnStartTransforming?.Invoke(this, currentResource);
         SetLabel();
@@ -180,6 +184,27 @@ public class Transformer : MonoBehaviour
             currentState = TransformerState.Available;
         }
         SetLabel();
+    }
+
+    private void SetResourcePositionsInQueue()
+    {
+        if (currentResource != null)
+        {
+            currentResource.transform.position = transform.position;
+        }
+
+        Vector3 queueStartPosition = transform.position + resourceStackOffset * resourceStackSpacing;
+
+        Resource[] queuedResources = transformingResourceQueue.ToArray();
+
+        for (int i = 0; i < queuedResources.Length; i++)
+        {
+            if (queuedResources[i] != null)
+            {
+                Vector3 targetPosition = queueStartPosition + (resourceStackOffset * resourceStackSpacing * i);
+                queuedResources[i].transform.position = targetPosition;
+            }
+        }
     }
 
     private void OnDrawGizmos()
