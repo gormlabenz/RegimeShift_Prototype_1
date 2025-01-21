@@ -16,6 +16,7 @@ public class Transformer : MonoBehaviour
     public event Action<Transformer, Resource> OnResourceTransformed;
     public event Action<Transformer, Resource> OnStartTransforming;
     public event Action<Transformer, Resource[]> OnTransformerDisabled;
+    public event Action<Transformer> OnTransformerEnabled;
 
 
     [SerializeField] private ProductionTypes.TransformerType type;
@@ -68,12 +69,23 @@ public class Transformer : MonoBehaviour
     {
         List<Resource> allResources = new List<Resource>(transformingResourceQueue);
         allResources.AddRange(movingResources);
-        allResources.Add(currentResource);
+        if (currentResource != null)
+        {
+            allResources.Add(currentResource);
+        }
 
+        currentState = TransformerState.Disabled;
         OnTransformerDisabled?.Invoke(this, allResources.ToArray());
 
         transformingResourceQueue.Clear();
         movingResources.Clear();
+        currentResource = null;
+    }
+
+    private void OnEnable()
+    {
+        currentState = TransformerState.Available;
+        OnTransformerEnabled?.Invoke(this);
     }
 
     public void AddResourceToMovingList(Resource resource)
