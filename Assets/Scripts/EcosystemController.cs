@@ -42,7 +42,7 @@ public class EcosystemController : MonoBehaviour
             if (nextTransformer != null)
             {
                 resource.SetTargetTransformer(nextTransformer);
-                transformer.AddResourceToMovingList(resource);
+                nextTransformer.AddResourceToMovingList(resource);
             }
         }
     }
