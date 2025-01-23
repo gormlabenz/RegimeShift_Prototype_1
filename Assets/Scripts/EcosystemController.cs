@@ -82,6 +82,8 @@ public class EcosystemController : MonoBehaviour
         transformer.RemoveResourceFromMovingList(resource);
         transformer.AddResourceToTransformingQueue(resource);
         resource.SetState(Resource.ResourceState.Waiting);
+
+        resource.transform.SetParent(transformer.transform, worldPositionStays: true);
     }
 
     private void HandleOnStartTransforming(Transformer transformer, Resource resource)
@@ -92,18 +94,18 @@ public class EcosystemController : MonoBehaviour
     private void HandleOnResourceTransformed(Transformer transformer, Resource resource)
     {
         ProductionTypes.ResourceType nextType = ProductionTypes.GetTransformerOutputType(transformer.Type);
-
         resource.SetTypeState(nextType);
 
-        Transformer nextTransformer = GetNextTransformerTarget(resource);
 
+        resource.transform.SetParent(resourceParent, worldPositionStays: true);
+
+        Transformer nextTransformer = GetNextTransformerTarget(resource);
         if (nextTransformer != null)
         {
             resource.SetTargetTransformer(nextTransformer);
             nextTransformer.AddResourceToMovingList(resource);
         }
     }
-
     private void HandleOnTransformerDisabled(Transformer transformer, Resource[] resources)
     {
         enabledTransformer.Remove(transformer);
