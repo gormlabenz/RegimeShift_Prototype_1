@@ -63,11 +63,10 @@ public class PlayingFieldController : MonoBehaviour
         foreach (Weight w in weights)
         {
             // Skip weights outside the boundary mesh
-            /* if (!IsPointInsideMesh(w.transform.position))
+            if (!IsPointInsideMesh(w.transform.position))
             {
-                Debug.Log("Weight " + w.name + " is outside the boundary mesh.");
                 continue;
-            } */
+            }
 
             weightedPosition += w.transform.position * w.mass;
             totalWeight += w.mass;
@@ -203,27 +202,8 @@ public class PlayingFieldController : MonoBehaviour
     private bool IsPointInsideMesh(Vector3 point)
     {
         MeshCollider meshCollider = boundaryMesh.GetComponent<MeshCollider>();
-        if (meshCollider == null) return true; // If no collider, accept all points
-
-        // Schieße einen Strahl in eine zufällige Richtung
-        Vector3 direction = Random.onUnitSphere;
-        Ray ray = new Ray(point, direction);
-
-        // Zähle die Anzahl der Schnittpunkte
-        RaycastHit[] hits = Physics.RaycastAll(ray);
-        int intersections = 0;
-
-        foreach (RaycastHit hit in hits)
-        {
-            // Prüfe ob der Treffer zum gewünschten Mesh gehört
-            if (hit.collider == meshCollider)
-            {
-                intersections++;
-            }
-        }
-
-        // Wenn die Anzahl der Schnittpunkte ungerade ist, liegt der Punkt im Mesh
-        return (intersections % 2) == 1;
+        if (meshCollider == null) return true;
+        return meshCollider.bounds.Contains(point);
     }
 
 }

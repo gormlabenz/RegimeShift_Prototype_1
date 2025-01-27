@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SurfaceController : MonoBehaviour
 {
-    [SerializeField] private GameObject targetObject; // Das GameObject, dessen Material rutschig werden soll
+    [SerializeField] private GameObject targetObject;
     private Collider targetCollider;
 
     private void Start()
