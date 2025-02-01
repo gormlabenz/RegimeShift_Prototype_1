@@ -8,13 +8,15 @@ public class Transformer : MonoBehaviour
     {
         Available,      // Ready to accept and transform resources
         Transforming,   // Currently transforming a resource
-        Disabled        // Transformer is not operational
+        Disabled,       // Transformer is not operational
+        Lifted,         // Transformer is lifted
     }
 
     public event Action<Transformer, Resource> OnResourceTransformed;
     public event Action<Transformer, Resource> OnStartTransforming;
     public event Action<Transformer, Resource[]> OnTransformerDisabled;
     public event Action<Transformer> OnTransformerEnabled;
+    public event Action<Transformer, Resource[]> OnTransformerLifted;
 
 
     [SerializeField] private ProductionTypes.TransformerType type;
@@ -88,19 +90,16 @@ public class Transformer : MonoBehaviour
 
     private void OnDisable()
     {
-        List<Resource> allResources = new List<Resource>(transformingResourceQueue);
-        allResources.AddRange(movingResources);
-        if (currentResource != null)
-        {
-            allResources.Add(currentResource);
-        }
-
         currentState = TransformerState.Disabled;
-        OnTransformerDisabled?.Invoke(this, allResources.ToArray());
+        var resources = ClearResources();
+        OnTransformerDisabled?.Invoke(this, resources);
+    }
 
-        transformingResourceQueue.Clear();
-        movingResources.Clear();
-        currentResource = null;
+    public void OnLifted()
+    {
+        currentState = TransformerState.Lifted;
+        var resources = ClearResources();
+        OnTransformerLifted?.Invoke(this, resources);
     }
 
     private void OnEnable()
@@ -204,6 +203,23 @@ public class Transformer : MonoBehaviour
         }
     }
 
+    private Resource[] ClearResources()
+    {
+        var allResources = new List<Resource>(transformingResourceQueue);
+        allResources.AddRange(movingResources);
+
+        if (currentResource != null)
+        {
+            allResources.Add(currentResource);
+        }
+
+        transformingResourceQueue.Clear();
+        movingResources.Clear();
+        currentResource = null;
+
+        return allResources.ToArray();
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -213,5 +229,10 @@ public class Transformer : MonoBehaviour
     public void SetDisabled(bool disabled)
     {
         currentState = disabled ? TransformerState.Disabled : TransformerState.Available;
+    }
+
+    public void setType(ProductionTypes.TransformerType type)
+    {
+        this.type = type;
     }
 }

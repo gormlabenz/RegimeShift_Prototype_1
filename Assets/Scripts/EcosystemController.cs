@@ -55,6 +55,7 @@ public class EcosystemController : MonoBehaviour
         transformer.OnResourceTransformed += HandleOnResourceTransformed;
         transformer.OnStartTransforming += HandleOnStartTransforming;
         transformer.OnTransformerDisabled += HandleOnTransformerDisabled;
+        transformer.OnTransformerLifted += HandleOnTransformerLifted;
         transformer.OnTransformerEnabled += HandleOnTransformerEnabled;
     }
 
@@ -63,6 +64,7 @@ public class EcosystemController : MonoBehaviour
         transformer.OnResourceTransformed -= HandleOnResourceTransformed;
         transformer.OnStartTransforming -= HandleOnStartTransforming;
         transformer.OnTransformerDisabled -= HandleOnTransformerDisabled;
+        transformer.OnTransformerLifted -= HandleOnTransformerLifted;
         transformer.OnTransformerEnabled -= HandleOnTransformerEnabled;
     }
 
@@ -109,18 +111,13 @@ public class EcosystemController : MonoBehaviour
     private void HandleOnTransformerDisabled(Transformer transformer, Resource[] resources)
     {
         enabledTransformer.Remove(transformer);
+        ReassignResources(resources);
+    }
 
-        foreach (var resource in resources)
-        {
-            resource.SetState(Resource.ResourceState.Unassigned);
-            Transformer nextTransformer = GetNextTransformerTarget(resource);
-            if (nextTransformer != null)
-            {
-                resource.SetState(Resource.ResourceState.Moving);
-                resource.SetTargetTransformer(nextTransformer);
-                nextTransformer.AddResourceToMovingList(resource);
-            }
-        }
+    private void HandleOnTransformerLifted(Transformer transformer, Resource[] resources)
+    {
+        enabledTransformer.Remove(transformer);
+        ReassignResources(resources);
     }
 
     private void HandleOnTransformerEnabled(Transformer transformer)
@@ -150,6 +147,21 @@ public class EcosystemController : MonoBehaviour
         {
             Debug.LogWarning($"No transformer found for resource {resource.name} with type {nextType}");
             return null;
+        }
+    }
+
+    private void ReassignResources(Resource[] resources)
+    {
+        foreach (var resource in resources)
+        {
+            resource.SetState(Resource.ResourceState.Unassigned);
+            Transformer nextTransformer = GetNextTransformerTarget(resource);
+            if (nextTransformer != null)
+            {
+                resource.SetState(Resource.ResourceState.Moving);
+                resource.SetTargetTransformer(nextTransformer);
+                nextTransformer.AddResourceToMovingList(resource);
+            }
         }
     }
 
