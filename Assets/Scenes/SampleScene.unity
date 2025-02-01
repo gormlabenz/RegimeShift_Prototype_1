@@ -180,6 +180,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -368,6 +372,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -469,6 +477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.75
@@ -539,7 +551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &160503482
 Transform:
   m_ObjectHideFlags: 0
@@ -574,6 +586,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -699,6 +715,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -809,6 +829,7 @@ GameObject:
   - component: {fileID: 288031043}
   - component: {fileID: 288031047}
   - component: {fileID: 288031048}
+  - component: {fileID: 288031049}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -825,8 +846,8 @@ Transform:
   m_GameObject: {fileID: 288031040}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 992170584}
@@ -959,6 +980,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mass: 0.2
+--- !u!114 &288031049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288031040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c166d110ef104b8aa62564a65b67cef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &288785970 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
@@ -989,6 +1022,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1239,6 +1276,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -1330,6 +1371,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1518,6 +1563,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -1579,6 +1628,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1681,6 +1734,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -1737,6 +1794,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1795,6 +1856,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -1851,6 +1916,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1912,6 +1981,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2094,6 +2167,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.75
@@ -2154,6 +2231,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2256,6 +2337,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.75
@@ -2312,6 +2397,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2374,6 +2463,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -2430,6 +2523,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2496,6 +2593,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2722,7 +2823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1040538913
 Transform:
   m_ObjectHideFlags: 0
@@ -2757,6 +2858,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2820,6 +2925,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.75
@@ -2876,6 +2985,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2948,6 +3061,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -3014,6 +3131,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3116,6 +3237,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -3176,6 +3301,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3238,6 +3367,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.75
@@ -3299,6 +3432,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.75
@@ -3359,6 +3496,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3456,6 +3597,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.75
@@ -3516,6 +3661,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3619,6 +3768,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -3679,6 +3832,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3756,6 +3913,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.75
@@ -3816,6 +3977,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4001,6 +4166,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.75
@@ -4061,6 +4230,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4124,6 +4297,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -4184,6 +4361,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4296,6 +4477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -4357,6 +4542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -4417,6 +4606,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4529,6 +4722,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer A (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -4614,6 +4811,10 @@ PrefabInstance:
     - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_Name
       value: Transformer A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269524654666600734, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297008884898623585, guid: 480ec3ce174d6499d81426d7a148c6fa, type: 3}
       propertyPath: m_LocalPosition.x
