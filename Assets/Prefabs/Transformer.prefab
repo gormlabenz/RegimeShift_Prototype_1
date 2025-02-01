@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 1286544933674411426}
   - component: {fileID: 318032205473201819}
   - component: {fileID: 1346106038198650916}
-  - component: {fileID: 3955854703223106152}
-  m_Layer: 6
+  - component: {fileID: 7524771493379501416}
+  m_Layer: 3
   m_Name: Transformer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3955854703223106152
+--- !u!114 &7524771493379501416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -410,8 +410,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2269524654666600734}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 919011c8f376f4f9eb17eed23ef13f66, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c080acb3416142eca00e462cca5cf03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMaterial: {fileID: 2100000, guid: 095f018d197e8437d89b3ff7671994da, type: 2}
   highlightMaterial: {fileID: 2100000, guid: efadee31cb78f41a3aa86c265735090c, type: 2}
-  selectRadius: 0.3
